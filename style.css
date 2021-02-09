@@ -1,0 +1,51 @@
+/* some CSS needed for watch toggle icon */
+.isSeenIcon {
+  height: 20px;
+  margin-right: 5px;
+}
+
+/* This will show user that movie was watched */
+.movieWasSeen {
+  filter: grayscale(100%);
+  color: grey;
+  text-decoration: line-through;
+}
+
+/* This will put the containers to top right corner of the site */
+#moviesCountersContainer {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-right: 10px;
+}
+
+/* Bold the movie counters */
+.moviesCounter {
+  font-weight: bold;
+}
+
+/* Push away a little bit from top our movies list,
+and if we are on device with big screen let's center it */
+#moviesListContainer {
+  margin: 100px auto;
+}
+
+@media only screen and (min-width: 600px) {
+  /* If we are using our app on laptop or
+  tablet - let's give a movies list some width */
+  #moviesListContainer {
+    width: 1400px;
+  }
+}
+
+/* Set transition to every movie record */
+.movieRecord {
+  transition: all 0.12s ease-in-out;
+}
+
+/* If user hover an movie record then scale it a bit
+it looks great */
+.movieRecord:hover {
+  transform: scale(1.005);
+  text-shadow: 5px 0px 30px #ff000094;
+}

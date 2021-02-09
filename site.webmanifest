@@ -1,0 +1,12 @@
+{
+    "short_name": "Movies-Journal",
+    "name": "Personal Movies Journal",
+    "icons": [{
+      "src": "assets/icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }],
+    "start_url": "/",
+    "background_color": "#fafafa",
+    "theme_color": "#fafafa"
+  }
