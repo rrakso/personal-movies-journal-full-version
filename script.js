@@ -153,6 +153,7 @@ window.addEventListener('DOMContentLoaded', () => {
   moviesDataObject.forEach((movieData) => {
     moviesInterface.addMovieToList(movieData, {
       callback: (clickedMovieId, event) => {
+        alert(JSON.stringify(event));
         const listElement = event.path[1];
         movieClickAction(
           moviesInterface,
