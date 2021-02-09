@@ -45,8 +45,12 @@ class MoviesListInterface {
     const button = document.createElement('button');
     button.innerText = 'Seen this';
     button.addEventListener('click', (event) => {
-      callback.call(context, id, event);
-      alert(html);
+      try {
+        callback.call(context, id, event);
+        alert(html);
+      } catch (error) {
+        alert(error);
+      }
     });
 
     const movieTextElement = document.createElement('span');
