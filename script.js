@@ -1,28 +1,29 @@
 class MoviesListInterface {
-  constructor(
-    moviesCounterAllElement,
-    moviesCounterSeenElement,
-    moviesListElement
-  ) {
+  constructor(moviesCounterAllElement, moviesCounterSeenElement, moviesListElement) {
     this.counterAll = moviesCounterAllElement;
     this.counterSeen = moviesCounterSeenElement;
     this.moviesList = moviesListElement;
+
+    this._ICON_PATH = 'assets/popcornIcon.png';
+    this._CLASSNAME_SEEN = 'movieWasSeen';
+    this._CLASSNAME_ICON = 'isSeenIcon';
+    this._WAS_SEEN_DATA_TAG = 'T';
   }
 
-  static setSeenOrUnseen(element, setToSeen) {
+  setSeenOrUnseen(element, setToSeen) {
     if (setToSeen) {
-      element.classList.add("movieWasSeen");
+      element.classList.add(this._CLASSNAME_SEEN);
     } else {
-      element.classList.remove("movieWasSeen");
+      element.classList.remove(this._CLASSNAME_SEEN);
     }
   }
 
   setMovieElementToSeenByIndex(elementIndex) {
-    this.constructor.setSeenOrUnseen(this.moviesList.children[elementIndex], 1);
+    this.setSeenOrUnseen(this.moviesList.children[elementIndex], 1);
   }
 
   setMovieElementToUnseenByIndex(elementIndex) {
-    this.constructor.setSeenOrUnseen(this.moviesList.children[elementIndex], 0);
+    this.setSeenOrUnseen(this.moviesList.children[elementIndex], 0);
   }
 
   setSeenCounter(howMany) {
@@ -34,24 +35,23 @@ class MoviesListInterface {
   }
 
   _createElementList(id, text, seen, { callback, context }) {
-    const iconElement = document.createElement("img");
-    iconElement.src = "popcornIcon.png";
-    iconElement.classList.add("isSeenIcon");
-    iconElement.addEventListener("click", (event) => {
+    const iconElement = document.createElement('img');
+    iconElement.src = this._ICON_PATH;
+    iconElement.classList.add(this._CLASSNAME_ICON);
+    iconElement.addEventListener('click', (event) => {
       callback.call(context, id, event);
     });
 
     const movieTextElement = document.createTextNode(text);
 
-    const elementList = document.createElement("li");
+    const elementList = document.createElement('li');
     elementList.appendChild(iconElement);
     elementList.appendChild(movieTextElement);
 
     this.moviesList.appendChild(elementList);
 
-    const movieWasSeen = seen.toUpperCase() === "T" ? true : false;
-    if (movieWasSeen)
-      this.setMovieElementToSeenByIndex(this.moviesList.childElementCount - 1);
+    const movieWasSeen = seen.toUpperCase() === this._WAS_SEEN_DATA_TAG ? true : false;
+    if (movieWasSeen) this.setMovieElementToSeenByIndex(this.moviesList.childElementCount - 1);
   }
 
   addMovieToList({ id, title, year, genre, summary, seen }, clickCallback) {
@@ -90,7 +90,7 @@ function countMovies(moviesDataObject) {
   let countedSeen = 0;
 
   moviesDataObject.forEach((movieData) => {
-    if (movieData.seen.toUpperCase() === "T") countedSeen += 1;
+    if (movieData.seen.toUpperCase() === 'T') countedSeen += 1;
   });
 
   return { countedAll, countedSeen };
@@ -101,35 +101,33 @@ function movieClickAction(
   moviesDataObject,
   moviesSeenCounter,
   listElement,
-  clickedMovieId
+  clickedMovieId,
 ) {
-  const movieObjectIndex = moviesDataObject.findIndex(
-    (x) => x.id == clickedMovieId
-  );
+  const movieObjectIndex = moviesDataObject.findIndex((x) => x.id == clickedMovieId);
   const selectedMovieObject = moviesDataObject[movieObjectIndex];
 
-  if (selectedMovieObject.seen.toUpperCase() === "T") {
-    selectedMovieObject.seen = "F";
+  if (selectedMovieObject.seen.toUpperCase() === 'T') {
+    selectedMovieObject.seen = 'F';
     moviesInterface.setSeenCounter(moviesSeenCounter.down().currentCount);
-    MoviesListInterface.setSeenOrUnseen(listElement, 0);
+    moviesInterface.setSeenOrUnseen(listElement, 0);
   } else {
-    selectedMovieObject.seen = "T";
+    selectedMovieObject.seen = 'T';
     moviesInterface.setSeenCounter(moviesSeenCounter.up().currentCount);
-    MoviesListInterface.setSeenOrUnseen(listElement, 1);
+    moviesInterface.setSeenOrUnseen(listElement, 1);
   }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  const moviesCounterAllElement = document.getElementById("moviesCounterAll");
-  const moviesCounterSeenElement = document.getElementById("moviesCounterSeen");
-  const moviesListElement = document.getElementById("moviesList");
+window.addEventListener('DOMContentLoaded', () => {
+  const moviesCounterAllElement = document.getElementById('moviesCounterAll');
+  const moviesCounterSeenElement = document.getElementById('moviesCounterSeen');
+  const moviesListElement = document.getElementById('moviesList');
 
   const moviesSeenCounter = new SimpleCounter();
 
   const moviesInterface = new MoviesListInterface(
     moviesCounterAllElement,
     moviesCounterSeenElement,
-    moviesListElement
+    moviesListElement,
   );
 
   const moviesDataObject = JSON.parse(moviesData);
@@ -148,7 +146,7 @@ window.addEventListener("DOMContentLoaded", () => {
           moviesDataObject,
           moviesSeenCounter,
           listElement,
-          clickedMovieId
+          clickedMovieId,
         );
 
         console.log(JSON.stringify(moviesDataObject));
