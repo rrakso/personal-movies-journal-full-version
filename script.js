@@ -39,21 +39,21 @@ class MoviesListInterface {
     iconElement.src = this._ICON_PATH;
     iconElement.classList.add(this._CLASSNAME_ICON);
     iconElement.addEventListener('click', (event) => {
-      callback.call(context, id, event);
+      alert(html);
     });
 
     const button = document.createElement('button');
-    button.innerText = 'Info';
+    button.innerText = 'Seen this';
     button.addEventListener('click', () => {
-      alert(html);
+      callback.call(context, id, event);
     });
 
     const movieTextElement = document.createElement('span');
     movieTextElement.innerHTML = html;
 
     const elementList = document.createElement('li');
-    elementList.appendChild(iconElement);
     elementList.appendChild(button);
+    elementList.appendChild(iconElement);
     elementList.appendChild(movieTextElement);
 
     this.moviesList.appendChild(elementList);
