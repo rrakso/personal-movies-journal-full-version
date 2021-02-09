@@ -42,11 +42,18 @@ class MoviesListInterface {
       callback.call(context, id, event);
     });
 
+    const button = document.createElement('button');
+    button.innerText = 'Info';
+    button.addEventListener('click', () => {
+      alert(html);
+    });
+
     const movieTextElement = document.createElement('span');
     movieTextElement.innerHTML = html;
 
     const elementList = document.createElement('li');
     elementList.appendChild(iconElement);
+    elementList.appendChild(button);
     elementList.appendChild(movieTextElement);
 
     this.moviesList.appendChild(elementList);
@@ -118,7 +125,7 @@ function movieClickAction(
   }
 }
 
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
   const moviesCounterAllElement = document.getElementById('moviesCounterAll');
   const moviesCounterSeenElement = document.getElementById('moviesCounterSeen');
   const moviesListElement = document.getElementById('moviesList');
