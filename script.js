@@ -46,7 +46,6 @@ class MoviesListInterface {
     movieTextElement.innerHTML = html;
 
     const elementList = document.createElement('li');
-    elementList.appendChild(button);
     elementList.appendChild(iconElement);
     elementList.appendChild(movieTextElement);
 
