@@ -5,6 +5,7 @@ class MoviesListInterface {
     this.moviesList = moviesListElement;
 
     this._ICON_PATH = 'assets/popcornIcon.png';
+    this._CLASSNAME_MOVIE_RECORD = 'movieRecord';
     this._CLASSNAME_SEEN = 'movieWasSeen';
     this._CLASSNAME_ICON = 'isSeenIcon';
     this._WAS_SEEN_DATA_TAG = 'T';
@@ -46,6 +47,7 @@ class MoviesListInterface {
     movieTextElement.innerHTML = html;
 
     const elementList = document.createElement('li');
+    elementList.classList.add(this._CLASSNAME_MOVIE_RECORD);
     elementList.appendChild(iconElement);
     elementList.appendChild(movieTextElement);
 
@@ -118,6 +120,41 @@ function movieClickAction(
   }
 }
 
+const cookie = {
+  set: (cname, cvalue, exdays) => {
+    var d = new Date();
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    var expires = `${expires}=${d.toGMTString()}`;
+    document.cookie = `${cname}=${cvalue};${expires};path=/`;
+  },
+  get: (cname) => {
+    var name = `${cname}=`;
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return undefined;
+  },
+};
+
+function getOrSetMovieData(moviesData, forceSave = false) {
+  const MOVIE_DATA_COOKIE_NAME = 'user-movie-data';
+  const userMovieData = cookie.get(MOVIE_DATA_COOKIE_NAME);
+  if (userMovieData === undefined || forceSave) {
+    cookie.set(MOVIE_DATA_COOKIE_NAME, moviesData, 5 * 360);
+    return getOrSetMovieData(moviesData);
+  }
+
+  return userMovieData;
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   const moviesCounterAllElement = document.getElementById('moviesCounterAll');
   const moviesCounterSeenElement = document.getElementById('moviesCounterSeen');
@@ -131,7 +168,7 @@ window.addEventListener('DOMContentLoaded', () => {
     moviesListElement,
   );
 
-  const moviesDataObject = JSON.parse(moviesData);
+  const moviesDataObject = JSON.parse(getOrSetMovieData(moviesData));
 
   let { countedAll, countedSeen } = countMovies(moviesDataObject);
   moviesSeenCounter.currentCount = countedSeen;
@@ -142,6 +179,7 @@ window.addEventListener('DOMContentLoaded', () => {
     moviesInterface.addMovieToList(movieData, {
       callback: (clickedMovieId, event) => {
         const listElement = event.composedPath()[1];
+
         movieClickAction(
           moviesInterface,
           moviesDataObject,
@@ -150,7 +188,8 @@ window.addEventListener('DOMContentLoaded', () => {
           clickedMovieId,
         );
 
-        console.log(JSON.stringify(moviesDataObject));
+        // Used to show that the content of "moviesData" is changing
+        getOrSetMovieData(JSON.stringify(moviesDataObject), true);
       },
       context: this,
     });
