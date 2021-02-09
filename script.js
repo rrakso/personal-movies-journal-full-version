@@ -34,7 +34,7 @@ class MoviesListInterface {
     this.counterAll.innerText = howMany;
   }
 
-  _createElementList(id, text, seen, { callback, context }) {
+  _createElementList(id, html, seen, { callback, context }) {
     const iconElement = document.createElement('img');
     iconElement.src = this._ICON_PATH;
     iconElement.classList.add(this._CLASSNAME_ICON);
@@ -42,7 +42,8 @@ class MoviesListInterface {
       callback.call(context, id, event);
     });
 
-    const movieTextElement = document.createTextNode(text);
+    const movieTextElement = document.createElement('span');
+    movieTextElement.innerHTML = html;
 
     const elementList = document.createElement('li');
     elementList.appendChild(iconElement);
@@ -55,7 +56,7 @@ class MoviesListInterface {
   }
 
   addMovieToList({ id, title, year, genre, summary, seen }, clickCallback) {
-    const movieText = `„${title}“ - a ${genre} from ${year}. Sumary: ${summary}`;
+    const movieText = `„${title}“ - a ${genre} from ${year}.<br>Sumary: ${summary}`;
 
     this._createElementList(id, movieText, seen, clickCallback);
   }
@@ -117,7 +118,7 @@ function movieClickAction(
   }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const moviesCounterAllElement = document.getElementById('moviesCounterAll');
   const moviesCounterSeenElement = document.getElementById('moviesCounterSeen');
   const moviesListElement = document.getElementById('moviesList');
