@@ -38,19 +38,15 @@ class MoviesListInterface {
     const iconElement = document.createElement('img');
     iconElement.src = this._ICON_PATH;
     iconElement.classList.add(this._CLASSNAME_ICON);
-    // iconElement.addEventListener('click', (event) => {
-    //   callback.call(context, id, event);
-    // });
+    iconElement.addEventListener('click', (event) => {
+      callback.call(context, id, event);
+    });
 
     const movieTextElement = document.createTextNode(text);
 
     const elementList = document.createElement('li');
     elementList.appendChild(iconElement);
     elementList.appendChild(movieTextElement);
-
-    elementList.addEventListener('click', (event) => {
-      callback.call(context, id, event);
-    });
 
     this.moviesList.appendChild(elementList);
 
@@ -144,7 +140,7 @@ window.addEventListener('DOMContentLoaded', () => {
   moviesDataObject.forEach((movieData) => {
     moviesInterface.addMovieToList(movieData, {
       callback: (clickedMovieId, event) => {
-        const listElement = event.path[0];
+        const listElement = event.path[1];
         movieClickAction(
           moviesInterface,
           moviesDataObject,
