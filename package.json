@@ -1,6 +1,6 @@
 {
   "name": "personal-movies-journal",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Web APP that will list basic info about movies. User can log if the movie was watched or not.",
   "main": "index.html",
   "scripts": {
