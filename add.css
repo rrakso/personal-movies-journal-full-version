@@ -1,0 +1,225 @@
+body {
+  background: #3399cc;
+  font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
+  font-size: small;
+  margin: 8px 0 16px;
+  text-align: center;
+}
+
+#formContainer {
+  background: #fff;
+
+  margin: 0 auto;
+  text-align: left;
+  width: 640px;
+}
+
+#top {
+  display: block;
+  height: 10px;
+  margin: 10px auto 0;
+  width: 650px;
+}
+
+#footer {
+  width: 640px;
+  clear: both;
+  color: #999999;
+  text-align: center;
+  width: 640px;
+  padding-bottom: 15px;
+  font-size: 85%;
+}
+
+form.movieAddForm {
+  margin: 20px 20px 0;
+  padding: 0 0 20px;
+}
+
+h1 {
+  background-color: #cccccc;
+  margin: 0;
+  min-height: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.movieAddForm {
+  font-family: Lucida Grande, Tahoma, Arial, Verdana, sans-serif;
+  font-size: small;
+}
+
+.movieAddForm li {
+  width: 61%;
+}
+
+form ul {
+  font-size: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+form li {
+  display: block;
+  margin: 0;
+  padding: 4px 5px 2px 9px;
+  position: relative;
+}
+
+form li:after {
+  clear: both;
+  content: '.';
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+.buttons:after {
+  clear: both;
+  content: '.';
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+.buttons {
+  clear: both;
+  display: block;
+  margin-top: 10px;
+}
+
+* html form li {
+  height: 1%;
+}
+
+* html form li div {
+  display: inline-block;
+}
+
+form li div {
+  color: #444;
+  margin: 0 4px 0 0;
+  padding: 0 0 8px;
+}
+
+.form_description {
+  border-bottom: 1px dotted #ccc;
+  clear: both;
+  display: inline-block;
+  margin: 0 0 1em;
+}
+
+.form_description[class] {
+  display: block;
+}
+
+.form_description h2 {
+  clear: left;
+  font-size: 160%;
+  font-weight: 400;
+  margin: 0 0 3px;
+}
+
+.form_description p {
+  font-size: 95%;
+  line-height: 130%;
+  margin: 0 0 12px;
+}
+
+button.button_text {
+  overflow: visible;
+  padding: 0 7px;
+  width: auto;
+  font-size: 120%;
+  margin-right: 5px;
+}
+
+label.description {
+  border: none;
+  color: #222;
+  display: block;
+  font-size: 95%;
+  font-weight: 700;
+  line-height: 150%;
+  padding: 0 0 1px;
+}
+
+input.text {
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #c3c3c3;
+  border-right: 1px solid #c3c3c3;
+  border-top: 1px solid #7c7c7c;
+  color: #333;
+  font-size: 100%;
+  margin: 0;
+  padding: 2px 0;
+}
+
+textarea.textarea {
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #c3c3c3;
+  border-right: 1px solid #c3c3c3;
+  border-top: 1px solid #7c7c7c;
+  color: #333;
+  font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
+  font-size: 100%;
+  margin: 0;
+  width: 99%;
+}
+
+select.select {
+  color: #333;
+  font-size: 100%;
+  margin: 1px 0;
+  padding: 1px 0 0;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #c3c3c3;
+  border-right: 1px solid #c3c3c3;
+  border-top: 1px solid #7c7c7c;
+}
+
+input.radio {
+  display: block;
+  height: 13px;
+  line-height: 1.4em;
+  margin: 6px 0 0 3px;
+  width: 13px;
+}
+
+input.small {
+  width: 25%;
+}
+
+input.medium {
+  width: 50%;
+}
+
+textarea.medium {
+  height: 10em;
+}
+
+form .guidelines {
+  background: #f5f5f5;
+  border: 1px solid #e6e6e6;
+  color: #444;
+  font-size: 80%;
+  left: 100%;
+  line-height: 130%;
+  margin: 0 0 0 8px;
+  padding: 8px 10px 9px;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 42%;
+  z-index: 1000;
+}
+
+form .guidelines small {
+  font-size: 105%;
+}
+
+form li:hover .guidelines {
+  visibility: visible;
+}

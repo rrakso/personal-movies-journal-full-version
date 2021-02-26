@@ -27,6 +27,73 @@
     </div>
     <div id="formContainer">
 
+        <h1><a id="userInfoBar">&nbsp;</a></h1>
+
+        <form id="movieAddForm" class="movieAddForm" method="post" action="">
+            <div class="form_description">
+                <h2>Movies Journal - Add Movie</h2>
+                <p>You can add movie to your watch list</p>
+            </div>
+            <ul>
+                <li>
+                    <label class="description" for="movieTitle">Movie title </label>
+                    <div>
+                        <input id="movieTitle" name="movieTitle" class="text medium" type="text">
+                    </div>
+                    <p class="guidelines"><small>Title of movie to add</small></p>
+                </li>
+
+                <li>
+                    <label class="description" for="movieYear">Movie year </label>
+                    <div>
+                        <input id="movieYear" name="movieYear" class="text small" type="number">
+                    </div>
+                    <p class="guidelines"><small>Year of distribution</small></p>
+                </li>
+
+                <li>
+                    <label class="description" for="movieGenre">Movie genre </label>
+                    <div>
+                        <select class="select medium" id="movieGenre" name="movieGenre">
+                            <option selected="selected">-select one-</option>
+                            <option>Action</option>
+                            <option>Biography</option>
+                            <option>Crime</option>
+                            <option>Drama</option>
+                            <option>Western</option>
+                        </select>
+                    </div>
+                    <p class="guidelines"><small>Select one genre from the list</small></p>
+                </li>
+
+                <li>
+                    <div>
+                        <p>This movie was watched?</p>
+                        <input type="radio" id="notWatched" name="movieWasWatched" value="notWatched" checked>
+                        <label class="description" for="notWatched">No</label>
+                        <input type="radio" id="alreadyWatched" name="movieWasWatched" value="alreadyWatched">
+                        <label class="description" for="alreadyWatched">Yes</label>
+                    </div>
+                </li>
+
+                <li>
+                    <label class="description" for="movieSummary">Summary</label>
+                    <div>
+                        <textarea id="movieSummary" name="movieSummary" class="textarea medium"></textarea>
+                    </div>
+                    <p class="guidelines"><small>Summary of the movie</small></p>
+                </li>
+
+                <li class="buttons">
+                    <button id="goToTheList" class="button_text" type="button">Open list</button>
+                    <button id="addMovieToList" class="button_text" type="button">Add new movie</button>
+                </li>
+            </ul>
+        </form>
+
+        <div id="footer">
+            Movies Journal 2021
+        </div>
 
     </div>
 </body>

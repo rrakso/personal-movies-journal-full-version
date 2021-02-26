@@ -1,7 +1,7 @@
-import MoviesStorage from './movies-storage.js';
-import MoviesListInterface from './movies-list-interface.js';
-import SimpleCounter from './simple-counter.js';
-import { countMovies, movieClickAction } from './utils.js';
+import MoviesStorage from './lib/movies-storage.js';
+import MoviesListInterface from './lib/movies-list-interface.js';
+import SimpleCounter from './lib/simple-counter.js';
+import { countMovies, movieClickAction } from './lib/utils.js';
 
 window.addEventListener('DOMContentLoaded', () => {
   const moviesCounterAllElement = document.getElementById('moviesCounterAll');
@@ -9,9 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const moviesListElement = document.getElementById('moviesList');
 
   const moviesStorage = new MoviesStorage();
-
   const moviesSeenCounter = new SimpleCounter();
-
   const moviesInterface = new MoviesListInterface(
     moviesCounterAllElement,
     moviesCounterSeenElement,
